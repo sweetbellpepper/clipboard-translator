@@ -1,0 +1,72 @@
+[
+  {
+    "id": "M0",
+    "name": "原文框=textarea + 翻译按钮 + 占位提示",
+    "ok": true,
+    "input": "读取 DOM",
+    "output": "标签=TEXTAREA | 翻译按钮=true | 占位=\"复制即译，或在此输入后按 Enter 翻译\""
+  },
+  {
+    "id": "M1",
+    "name": "手动 apple + 点翻译 → 本地词典卡",
+    "ok": true,
+    "input": "apple",
+    "output": "词典卡=true | 词头=\"apple\" | 词性=n. | 底栏=\"由本地词典提供\""
+  },
+  {
+    "id": "M2",
+    "name": "手动英文句子 + Enter → 译文",
+    "ok": true,
+    "input": "Manual input verifies the sparrow translates typed sentences.",
+    "output": "译文=\"手动输入验证麻雀能否翻译键入的句子。\" | 词典卡=false | 底栏=\"由 hy-mt2-pro 翻译\""
+  },
+  {
+    "id": "M3",
+    "name": "Shift+Enter 换行且不触发翻译",
+    "ok": true,
+    "input": "line one + Shift+Enter",
+    "output": "原文含换行=true | 原文=\"\"line one\\n\"\" | 译文未变=true"
+  },
+  {
+    "id": "M4",
+    "name": "空白输入被忽略（Enter 与按钮均不发请求）",
+    "ok": true,
+    "input": "'   ' + Enter + 点翻译",
+    "output": "加载中=false | 译文未变=true | 原文trim空=true"
+  },
+  {
+    "id": "M8",
+    "name": "输入法组词 Enter 不翻译且不拦截",
+    "ok": true,
+    "input": "nihao + isComposing Enter",
+    "output": "defaultPrevented=false | 加载中=false | 译文未变=true"
+  },
+  {
+    "id": "M5",
+    "name": "聚焦时复制新文本仍自动翻译（无抑制）",
+    "ok": true,
+    "input": "草稿被复制覆盖：Clipboard still wins while the box is focused.",
+    "output": "原文=\"Clipboard still wins while the box is fo\" | 译文=\"当该框处于焦点状态时，剪贴板仍然优先。\" | 聚焦=sourceText"
+  },
+  {
+    "id": "M6a",
+    "name": "手动超上限(2233>2000) → 跳过卡",
+    "ok": true,
+    "input": "2233 字符",
+    "output": "跳过卡=true | 标题=\"已跳过本次翻译\""
+  },
+  {
+    "id": "M6b",
+    "name": "点「仍要翻译」→ 正常翻译",
+    "ok": true,
+    "input": "强制翻译超长文本",
+    "output": "跳过卡=false | 译文=\"这条长手动句子旨在超出配置的字符限制。这条长手动句子旨在超出\" | 复制可见=true"
+  },
+  {
+    "id": "M7",
+    "name": "手动翻译写入历史",
+    "ok": true,
+    "input": "打开历史面板",
+    "output": "可见=true | 行数=72 | 含手动句=true"
+  }
+]

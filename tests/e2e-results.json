@@ -1,0 +1,170 @@
+[
+  {
+    "id": "E1",
+    "name": "英文句子 → 只有中文译文",
+    "ok": true,
+    "input": "The committee has reached a consensus on the annual budget.",
+    "output": "译文=\"委员会已就年度预算达成共识。\" | 词典卡=false | 底栏=\"由 hy-mt2-pro 翻译\""
+  },
+  {
+    "id": "E2",
+    "name": "中文句子 → 自动判向英文译文",
+    "ok": true,
+    "input": "过度包装不仅浪费资源，还会误导消费者。",
+    "output": "译文=\"Excessive packaging not only wastes resource\""
+  },
+  {
+    "id": "E3",
+    "name": "单词 model → 本地词典卡",
+    "ok": true,
+    "input": "model",
+    "output": "词典卡=true | 词头=\"model\" | 词性=n./a./vi./vt. | 底栏=\"由本地词典提供\""
+  },
+  {
+    "id": "E4",
+    "name": "设置页：详解常开+词典状态，相关词条已删，缓存/热键键帽+说明/自启（默认关）+外观常开",
+    "ok": false,
+    "input": "打开设置页",
+    "output": "开关=false | 词典=\"词典已加载 · 约 3,402,564 词条 · 变形反查已就绪\" | 相关词条行=false | 缓存行=\"单词缓存\" | 自启=false | 外观折叠=false | 键帽=0 | 说明=\"在任意界面按下这组键即可唤出 / 隐藏窗口；关闭后不再响应。\""
+  },
+  {
+    "id": "E5",
+    "name": "长文本模型下拉框恰好 4 个选项",
+    "ok": true,
+    "input": "读取 modelSel.options",
+    "output": "选项=hy-mt2-pro,hy-mt2-plus,hy-mt2-lite,deepseek-v4.1-flash-1017"
+  },
+  {
+    "id": "E10",
+    "name": "设置页：单词模型固定 deepseek（选择器已移除）+ 上限 200–2000 提示",
+    "ok": true,
+    "input": "读取标签/选择器/提示文案",
+    "output": "标签=\"长文本翻译模型\" | 单词选择器存在=false | 详解提示=\"单个英文单词优先查本地词典（音标、全部词性释义）；未收录时固定由 deepseek-v4.1-flash-1017 详解，失败自动降级为普通翻译。\" | 上限提示=\"超过上限直接跳过、不发请求；可调 200–2000，默认 2000。\""
+  },
+  {
+    "id": "E6",
+    "name": "切到 deepseek → 底栏「由 deepseek-v4.1-flash-1017 翻译」且译文正常",
+    "ok": true,
+    "input": "切换到 deepseek + 复制英文句子",
+    "output": "译文=\"委员会已就年度预算达成共识。\" | 底栏=\"由 deepseek-v4.1-flash-1017 翻译\""
+  },
+  {
+    "id": "E7",
+    "name": "恢复 hy-mt2-pro → 底栏与译文均正常",
+    "ok": false,
+    "input": "恢复到 hy-mt2-pro + 复制英文句子",
+    "output": "译文=\"委员会已就年度预算达成共识。\" | 底栏=\"由 deepseek-v4.1-flash-1017 翻译\""
+  },
+  {
+    "id": "E11",
+    "name": "长度上限填 5000 → 夹到 2000 落盘后还原",
+    "ok": true,
+    "input": "填 5000 → 读 config.local.json → 还原",
+    "output": "显示=2000 | 落盘=2000 | 还原=2000"
+  },
+  {
+    "id": "E8",
+    "name": "复制按钮内容 = 界面主译文",
+    "ok": true,
+    "input": "点击复制",
+    "output": "剪贴板=\"委员会已就年度预算达成共识。\" | 界面=\"委员会已就年度预算达成共识。\""
+  },
+  {
+    "id": "W1",
+    "name": "apple → 词典卡（音标+词性+chips）",
+    "ok": true,
+    "input": "apple",
+    "output": "音标=\"/'æpl/\" | 词性=n. | chips=柯林斯 3 星,牛津核心词,中考,高考"
+  },
+  {
+    "id": "W5",
+    "name": "词典卡复制 = 释义行",
+    "ok": true,
+    "input": "点击复制",
+    "output": "剪贴板=\"n. 苹果, 家伙；[医] 苹果\""
+  },
+  {
+    "id": "W4",
+    "name": "befallen → 词典卡且释义指向原形 befall",
+    "ok": true,
+    "input": "befallen",
+    "output": "原形行=\"befall\" | 词头=\"befallen\" | 释义=\"befallen · 原形\nbefall\nbefallen\n\" | 底栏=\"由本地词典提供\""
+  },
+  {
+    "id": "W2",
+    "name": "skibidi → AI 兜底词典卡",
+    "ok": true,
+    "input": "skibidi",
+    "output": "耗时=406ms | 词性=adj./interj./n./v. | 底栏=\"由 deepseek-v4.1-flash-1017 详解\" | 例句=true"
+  },
+  {
+    "id": "W3",
+    "name": "skibidi 二次查询 → 缓存命中（<8s）",
+    "ok": false,
+    "input": "skibidi（第二次）",
+    "output": "耗时=20309ms | 底栏=\"由本地词典提供\" | 缓存文件=true"
+  },
+  {
+    "id": "L1",
+    "name": "历史面板记录翻译",
+    "ok": true,
+    "input": "打开历史",
+    "output": "可见=true | tab=history | 行数=80"
+  },
+  {
+    "id": "L2",
+    "name": "点击历史行回看译文",
+    "ok": true,
+    "input": "点击首行",
+    "output": "库可见=false | 原文=\"apple\""
+  },
+  {
+    "id": "L3",
+    "name": "收藏星标可切换且自恢复",
+    "ok": true,
+    "input": "apple 点星两次",
+    "output": "星标=true | 初=false | 一次=true | 二次=false"
+  },
+  {
+    "id": "L4",
+    "name": "设置页：缓存统计+热键键帽可用+自启默认关+外观常开",
+    "ok": false,
+    "input": "打开设置页",
+    "output": "缓存=\"2 条 · 12.0 KB\" | 热键禁用=true | 提示=\"热键被占用\" | 键帽=0 | 自启=false | 折叠=false"
+  },
+  {
+    "id": "L5",
+    "name": "热键开关可切换且自恢复",
+    "ok": false,
+    "input": "切换两次",
+    "output": "关=false | 开=false"
+  },
+  {
+    "id": "T1",
+    "name": "配色选择器 8 款、默认雾隐、旧控件已移除",
+    "ok": true,
+    "input": "读取设置页外观",
+    "output": "卡片=8 | 选中=brume | 记忆=brume | 标签=\"配色方案\" | 旧控件=false | 底色=#E7E3DA"
+  },
+  {
+    "id": "T2",
+    "name": "品牌名/标题/配色标签随语言中英切换",
+    "ok": true,
+    "input": "切英文再切回中文",
+    "output": "en品牌=\"Sparrow\" | en标题=\"Sparrow\" | en标签=\"Color scheme\" | en标记=Light/Light/Light/Light/Light/Dark/Dark/Dark | zh品牌=\"译雀\""
+  },
+  {
+    "id": "T3",
+    "name": "点选墨玉→变量/记忆同步，点回雾隐自恢复",
+    "ok": true,
+    "input": "点 onyx 再点 brume",
+    "output": "深底色=#1E2422 | 深强调=#86B7A6 | 深记忆=onyx | 还原=brume/#E7E3DA"
+  },
+  {
+    "id": "E9",
+    "name": "测试结束后配置模型与上限未被改动",
+    "ok": true,
+    "input": "读取 config.local.json",
+    "output": "原始=hy-mt2-pro/2000 | 结束=hy-mt2-pro/2000"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "defaultEngineId": "hy",
+  "timeoutMs": 15000,
+  "maxChars": 2000,
+  "dictPath": "E:\\译笺词库\\ecdict.db",
+  "engines": [
+    {
+      "id": "hy",
+      "displayName": "混元翻译",
+      "apiKey": "在这里填 API Key",
+      "baseUrl": "https://tokenhub.tencentmaas.com/v1",
+      "model": "hy-mt2-pro"
+    }
+  ]
+}

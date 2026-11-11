@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>译雀</title>
+<link rel="stylesheet" href="/src/styles.css">
+<script type="module" src="/src/main.ts" defer></script>
+</head>
+<body>
+<div class="win" id="app">
+  <header class="toolbar">
+    <span class="drag-zone" data-tauri-drag-region><span class="brand-top" id="brandTop">译雀</span></span>
+    <div class="tools">
+      <button type="button" class="sw on" id="btnWatch" role="switch" aria-checked="true" data-tip="watchOn" aria-label="监听中"><span class="sw-track"><span class="sw-knob"></span></span></button>
+      <button type="button" class="icon" id="btnPin" data-tip="pinLabel" aria-label="窗口置顶" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 3.5h5l-.8 4.3 2.6 2.5H5.7l2.6-2.5-.8-4.3Z"/><path d="M10 10.3v6.2"/></svg></button>
+      <button type="button" class="icon" id="btnDir" data-tip="direction" aria-label="切换中英方向"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7h13m0 0-3.2-3.2M16 7l-3.2 3.2"/><path d="M17 13H4m0 0 3.2-3.2M4 13l3.2 3.2"/></svg></button>
+      <button type="button" class="icon" id="btnLibrary" data-tip="library" aria-label="历史与生词本"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4.2C8.6 3.2 6.6 3 4 3v12c2.6 0 4.6.2 6 1.2 1.4-1 3.4-1.2 6-1.2V3c-2.6 0-4.6.2-6 1.2Z"/><path d="M10 4.2v12"/></svg></button>
+      <button type="button" class="icon" id="btnSettings" data-tip="settings" aria-label="设置"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.2 16.7 6.1v7.8L10 17.8 3.3 13.9V6.1Z"/><circle cx="10" cy="10" r="3.1"/></svg></button>
+      <button type="button" class="icon" id="btnMinimize" data-tip="minimize" aria-label="最小化"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10"/></svg></button>
+      <button type="button" class="icon" id="btnClose" data-tip="close" aria-label="收进托盘"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg></button>
+    </div>
+  </header>
+
+  <main class="view" id="popupView">
+    <section class="source">
+      <div class="pane-row">
+        <div class="pane-label" id="srcLabel">原文 · EN</div>
+        <button type="button" class="icon translate-at-label" id="btnTranslate" data-tip="translate" aria-label="翻译"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m0 0-4-4m4 4-4 4"/></svg></button>
+      </div>
+      <textarea class="source-text" id="sourceText" rows="2" spellcheck="false" autocomplete="off" placeholder="复制即译，或在此输入后按 Enter 翻译" aria-label="原文"></textarea>
+    </section>
+    <section class="target" id="targetPane">
+      <div class="pane-row">
+        <div class="pane-label" id="outLabel">译文 · 中</div>
+        <button type="button" class="icon copy-at-label" id="btnCopy" data-tip="copy" aria-label="复制译文"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="9" height="9" rx="1.5"/><path d="M13 4H5.5A1.5 1.5 0 0 0 4 5.5V13"/></svg></button>
+      </div>
+      <div class="target-body" id="targetBody"></div>
+      <div class="target-foot"><span id="engineNote"></span><span class="count" id="charCount"></span></div>
+    </section>
+  </main>
+
+  <main class="view hidden" id="settingsView">
+    <header class="settings-head" data-tauri-drag-region>
+      <button type="button" class="icon" id="btnBack" data-tip="back" aria-label="返回译文"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4 6 10l6 6"/></svg></button>
+      <b id="settingsTitle">设置</b><span class="settings-spacer"></span>
+    </header>
+    <div class="settings-body" id="settingsBody">
+
+      <div class="group">
+        <p class="group-title" id="grpConn">连接</p>
+        <div class="settings-row"><span class="row-label" id="keyLabel">API Key</span>
+          <div class="ctl"><input class="inp mono" id="keyInput" type="password" placeholder="粘贴 API Key" spellcheck="false" autocomplete="off" aria-label="API Key"><button type="button" class="eye" id="btnEye" aria-label="显示或隐藏密钥"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5Z"/><circle cx="10" cy="10" r="2.2"/></svg></button></div></div>
+        <div class="settings-row"><span class="row-label" id="urlLabel">接口地址</span>
+          <div class="ctl"><input class="inp mono" id="urlInput" spellcheck="false" aria-label="接口地址"></div></div>
+        <div class="settings-row"><span class="row-label" id="modelLabel">长文本翻译模型</span>
+          <div class="ctl"><select class="inp mono" id="modelSel" aria-label="长文本翻译模型"></select></div></div>
+        <div class="hint" id="keyHint">密钥只写入本机不入库的 config.local.json，不进浏览器存储、不进构建产物。</div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="group">
+        <p class="group-title" id="grpBehav">行为</p>
+        <div class="settings-row"><span class="row-label" id="watchLabel">剪贴板监听</span>
+          <div class="ctl"><button type="button" class="sw on" id="watchToggle" role="switch" aria-checked="true" aria-label="剪贴板监听"><span class="sw-track"><span class="sw-knob"></span></span></button><span class="unit" id="watchState">监听中</span></div></div>
+        <div class="settings-row"><span class="row-label" id="limitLabel">长度上限</span>
+          <div class="ctl"><input class="inp mono num-inp" id="limitInput" type="number" min="200" max="2000" step="100" value="2000" aria-label="长度上限"><span class="unit" id="limitUnit">字符</span></div></div>
+        <div class="hint" id="limitHint">超过上限直接跳过、不发请求；可调 200–2000，默认 2000。</div>
+        <div class="hint" id="dictHint">单个英文单词优先查本地词典（音标、全部词性释义）；未收录时固定由 deepseek-v4.1-flash-1017 详解，失败自动降级为普通翻译。</div>
+        <div class="settings-row"><span class="row-label" id="dictPathLabel">词典路径</span>
+          <div class="ctl"><input class="inp mono" id="dictPathInput" spellcheck="false" placeholder="ecdict.db" aria-label="词典路径"></div></div>
+        <div class="hint" id="dictStatus"></div>
+        <div class="settings-row"><span class="row-label" id="cacheLabel">单词缓存</span>
+          <div class="ctl"><span class="unit" id="cacheStats">—</span><button type="button" class="retry" id="btnCacheClear">清空</button></div></div>
+        <div class="settings-row"><span class="row-label" id="hotkeyLabel">全局热键</span>
+          <div class="ctl"><button type="button" class="sw on" id="hotkeyToggle" role="switch" aria-checked="true" aria-label="全局热键"><span class="sw-track"><span class="sw-knob"></span></span></button><span class="unit keys" id="hotkeyHint"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd></span></div></div>
+        <div class="hint" id="hotkeyDesc">在任意界面按下这组键即可唤出 / 隐藏窗口；关闭后不再响应。</div>
+        <div class="settings-row"><span class="row-label" id="autostartLabel">开机自启</span>
+          <div class="ctl"><button type="button" class="sw" id="autostartToggle" role="switch" aria-checked="false" aria-label="开机自启"><span class="sw-track"><span class="sw-knob"></span></span></button><span class="unit" id="autostartState">关</span></div></div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="group">
+        <p class="group-title" id="grpLook">外观</p>
+        <div class="settings-row"><span class="row-label" id="langLabel">界面语言</span>
+          <div class="seg" id="langSeg"><button type="button" data-lang="zh" class="on">中文</button><button type="button" data-lang="en">English</button></div></div>
+        <div class="settings-row"><span class="row-label" id="fsLabel">字号</span>
+          <div class="fs-ctl"><button type="button" class="fs-btn" id="fsBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="字号"><span id="fsVal">20px</span><span class="fs-caret">▾</span></button><div class="fs-pop" id="fsPop" role="listbox" hidden></div></div></div>
+        <div class="settings-row"><span class="row-label" id="themeLabel">配色方案</span>
+          <div class="ctl"><div class="scheme-grid" id="schemeGrid" role="group" aria-label="配色方案"></div></div></div>
+        <div class="settings-row"><span class="row-label" id="pinLabel">窗口置顶</span>
+          <div class="seg"><button type="button" class="on" id="pinOff">关</button><button type="button" id="pinOn">开</button></div></div>
+      </div>
+
+    </div>
+  </main>
+
+  <main class="view hidden" id="libraryView">
+    <header class="settings-head" data-tauri-drag-region>
+      <button type="button" class="icon" id="btnLibBack" data-tip="back" aria-label="返回译文"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4 6 10l6 6"/></svg></button>
+      <b id="libTitle">历史与生词本</b>
+      <div class="seg lib-tabs" id="libTabs"><button type="button" class="on" id="tabHistory">历史</button><button type="button" id="tabFav">生词本</button></div>
+      <span class="settings-spacer"></span>
+      <button type="button" class="icon" id="btnLibClear" data-tip="libClear" aria-label="清空"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h12M8 6V4.5h4V6M6 6l.7 10h6.6L14 6"/></svg></button>
+    </header>
+    <div class="lib-actions hidden" id="libActions">
+      <button type="button" class="retry" id="btnExportCsv">导出 CSV</button>
+      <button type="button" class="retry" id="btnExportAnki">导出 Anki</button>
+    </div>
+    <div class="settings-body" id="libraryBody"></div>
+  </main>
+
+  <div class="tip" id="tip" role="tooltip"></div>
+  <div class="toast" id="toast"></div>
+  <div class="resize-grip" id="grip" aria-hidden="true"></div>
+</div>
+</body>
+</html>

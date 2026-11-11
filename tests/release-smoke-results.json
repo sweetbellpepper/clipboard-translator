@@ -1,0 +1,26 @@
+[
+  {
+    "id": "S1",
+    "name": "发布版：apple 词典卡（无密钥可用）",
+    "ok": true,
+    "output": "词头=apple | chips=柯林斯 3 星,牛津核心词,中考,高考 | 底栏=由本地词典提供"
+  },
+  {
+    "id": "S2",
+    "name": "发布版：model 词典卡",
+    "ok": true,
+    "output": "词头=model | 底栏=由本地词典提供"
+  },
+  {
+    "id": "S3",
+    "name": "发布版：设置页词典状态已加载",
+    "ok": true,
+    "output": "词典状态=\"词典已加载 · 约 3,402,564 词条 · 变形反查已就绪\""
+  },
+  {
+    "id": "S4",
+    "name": "发布版：保存设置不覆盖 dictPath",
+    "ok": true,
+    "output": "dictPath=\"E:\\\\译笺词库\\\\ecdict.db\" | model=deepseek-v4.1-flash-1017"
+  }
+]

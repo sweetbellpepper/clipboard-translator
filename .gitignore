@@ -1,0 +1,48 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# 本地配置含密钥，禁止入库（PRD 第 0 节）
+config.local.json
+src-tauri/config.local.json
+.env
+.env.*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Rust / Tauri 构建产物
+src-tauri/target/
+src-tauri/gen/schemas/
+
+# 运行时本地数据（历史/缓存/窗口状态），不入库
+*.db
+window-state.json
+
+# 本地临时产物与历史 bundle
+.tmp-*
+git-history.bundle
+
+# 验证截图为本地产物，不入库（图标资源除外）
+tests/shots/
+tests/shots-*/
+prototypes/shots/
+prototypes/shots-*/
