@@ -4,6 +4,13 @@
 
 Tauri 2（Rust 系统外壳）+ Vanilla TypeScript 前端，零第三方前端 JS 库，便携单 exe。
 
+## 下载
+
+便携包与可选离线词典见 [Release v1.0.0](https://github.com/sweetbellpepper/clipboard-translator/releases/tag/v1.0.0)：
+- `sparrow-1.0.0-portable.zip` — 主包（exe + 无密钥配置 + 使用说明），下载即用。
+- `ecdict-dict-1.0.0.zip` — 可选离线词典（约 340 万词条）；不装时单词走 AI 兜底。
+- `SHA256SUMS.txt` — 校验和。
+
 ## 功能
 
 - **复制即译**：监听剪贴板，自动判向（英↔中），复制即出结果。
