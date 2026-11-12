@@ -226,7 +226,7 @@ UI 交付一律附真实截图（`prototypes/shots-app/`、`tests/shots/`、`tes
 - 2026-11-12 改名译雀/Sparrow + 8 配色；便携版交付 `E:\译笺1.0`；单实例(仅发布)+首启居中；图标选定 F 浅色并落地。
 - 2026-11-12 原文框手动输入（保留复制即译、无互斥）：textarea + 「翻译」按钮、Enter/Shift+Enter、移除 140 截断；PRD 同步（§4.8）。
 - 2026-11-12 打包发布到 `E:\译雀1.0`：清空旧文件（使用数据先备份到 `E:\译雀1.0-数据备份\`），含手动输入/单实例/首启居中/F 图标；发布冒烟 4/4 + 手动输入真窗口截图。
-- 2026-11-12 源码发布到 GitHub 公开仓库 `sweetbellpepper/clipboard-translator`：补 .gitignore、首提交前密钥扫描、图标 base64 + postinstall 还原；经本地代理推送（沙箱直连 github.com 被阻断）；远端校验无密钥/无运行时数据。
+- 2026-11-12 源码发布到 GitHub 私有仓库 `sweetbellpepper/clipboard-translator`（初建公开，后改私有）：补 .gitignore、首提交前密钥扫描、图标 base64 + postinstall 还原；经本地代理推送（沙箱直连 github.com 被阻断）；远端校验无密钥/无运行时数据。
 
 ## 附录 · 术语
 

@@ -316,7 +316,7 @@ npm run tauri build -- --no-bundle
 # 产物：src-tauri/target/release/clipboard-translator.exe（便携版，双击即用）
 ```
 
-把 exe 与 `config.local.json` 放同一目录即可（配置查找顺序：当前目录 → 父目录 → exe 所在目录及上溯五层）。**发布包不含密钥**：配置里 `apiKey` 留空，首次启动在设置页粘贴一次即自动保存。发布目录为 `E:\译雀1.0`（**译雀.exe** + 无密钥配置 + 使用说明.txt）；2026-11-12 最新一次打包含手动输入/单实例/首启居中/F 图标，交付前旧文件已清空（使用数据备份于 `E:\译雀1.0-数据备份\`）。源码已发布到 GitHub：<https://github.com/sweetbellpepper/clipboard-translator>（公开；克隆后 `npm install` 自动还原图标）。
+把 exe 与 `config.local.json` 放同一目录即可（配置查找顺序：当前目录 → 父目录 → exe 所在目录及上溯五层）。**发布包不含密钥**：配置里 `apiKey` 留空，首次启动在设置页粘贴一次即自动保存。发布目录为 `E:\译雀1.0`（**译雀.exe** + 无密钥配置 + 使用说明.txt）；2026-11-12 最新一次打包含手动输入/单实例/首启居中/F 图标，交付前旧文件已清空（使用数据备份于 `E:\译雀1.0-数据备份\`）。源码已发布到 GitHub：<https://github.com/sweetbellpepper/clipboard-translator>（私有；克隆后 `npm install` 自动还原图标）。
 
 ---
 

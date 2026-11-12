@@ -28,7 +28,7 @@
 | `preview.html` | 静态视觉基准，不参与程序运行 |
 | `preview-morandi.html` | 用户自行创建的另一份视觉稿（git 未跟踪），未修改 |
 | 发布版 | 2026-11-12 最新打包 **译雀 1.0** 便携 exe 交付到 `E:\译雀1.0`（译雀.exe + 无密钥 config + 使用说明.txt；含手动输入/单实例/首启居中/F 图标；交付前旧文件清空、使用数据备份于 `E:\译雀1.0-数据备份\`）；源码包不含密钥 |
-| GitHub | 2026-11-12 公开仓库 <https://github.com/sweetbellpepper/clipboard-translator>；首提交 7eee738 + 06b2d92（图标 base64 + postinstall 还原）；经本地代理 127.0.0.1:7897 推送（沙箱直连 github.com 被阻断）；远端校验无 config.local.json/无二进制图标误传 |
+| GitHub | 2026-11-12 私有仓库 <https://github.com/sweetbellpepper/clipboard-translator>（初建公开，后应用户要求改私有）；首提交 7eee738 + 06b2d92（图标 base64 + postinstall 还原）；经本地代理 127.0.0.1:7897 推送（沙箱直连 github.com 被阻断）；远端校验无 config.local.json/无二进制图标误传 |
 
 ## 3. 技术栈与运行环境
 

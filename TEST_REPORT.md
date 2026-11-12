@@ -600,7 +600,7 @@ Rust `http.rs` 的 clamp 上限 60s → **120s**，否则 glm 的 90s 会被夹�
 
 ## 二十四、源码发布到 GitHub（2026-11-12）
 
-**需求**：整理项目并发布到用户 GitHub。仓库名/可见性经询问定为 `clipboard-translator` / **公开**（账号 `sweetbellpepper`）。
+**需求**：整理项目并发布到用户 GitHub。仓库名/可见性经询问定为 `clipboard-translator` / 初建**公开**、后应用户要求改**私有**（账号 `sweetbellpepper`）。
 
 **整理**：补 `.gitignore`（`src-tauri/target/`、`gen/schemas/`、`*.db`、`window-state.json`、`.tmp-*`、`git-history.bundle`、各级截图目录、`tests/*.png`）；`git init -b main`；首提交前对 97 个暂存文件逐一密钥扫描 **clean**；提交 7eee738。二进制图标改为 base64（`tools/assets.b64.json`，18 项 684,287B）+ `tools/restore-icons.mjs` + `package.json` postinstall 自动还原，提交 06b2d92（72 个文本文件入库，图标/截图/数据库/密钥均不入库）。
 
