@@ -597,3 +597,15 @@ Rust `http.rs` 的 clamp 上限 60s → **120s**，否则 glm 的 90s 会被夹�
 **文档**：README/HANDOFF/PRD 的发布目录与状态更新为 `E:\译雀1.0`（含手动输入/单实例/居中/F 图标）；PRD §10 增发布条目。历史章节中的 `译笺1.0` 为当时磁盘事实，保留不改。
 
 **文件夹图标「没变」的澄清与处理**：用户反馈资源管理器里 `译雀.exe` 图标仍是旧的（运行时图标已是新）。实测 `Icon.ExtractAssociatedIcon(交付 exe)` 返回 **F 圆雀浅色**（`tests/shots-icon/delivered-exe-icon.png`），证明 exe 内嵌图标正确；旧显示为 **Windows 图标缓存**。先试 `ie4uinit -show` + 关窗重开，用户侧仍异常（磁盘 `iconcache_*.db` 仍持旧条目）。经用户**明确授权**后：结束 explorer.exe → 删除 `%LOCALAPPDATA%\Microsoft\Windows\Explorer\iconcache_*.db` 与 `%LOCALAPPDATA%\IconCache.db` → 重启资源管理器 → 重开文件夹，放大截图 `tests/shots-icon/folder-icon-after-clear.png` 确认列表显示新 F 图标。**非打包/图标资源问题，无需重新构建。**
+
+## 二十四、源码发布到 GitHub（2026-11-12）
+
+**需求**：整理项目并发布到用户 GitHub。仓库名/可见性经询问定为 `clipboard-translator` / **公开**（账号 `sweetbellpepper`）。
+
+**整理**：补 `.gitignore`（`src-tauri/target/`、`gen/schemas/`、`*.db`、`window-state.json`、`.tmp-*`、`git-history.bundle`、各级截图目录、`tests/*.png`）；`git init -b main`；首提交前对 97 个暂存文件逐一密钥扫描 **clean**；提交 7eee738。二进制图标改为 base64（`tools/assets.b64.json`，18 项 684,287B）+ `tools/restore-icons.mjs` + `package.json` postinstall 自动还原，提交 06b2d92（72 个文本文件入库，图标/截图/数据库/密钥均不入库）。
+
+**推送波折与根因**：① 连接器（MCP）OAuth token 只供 API，不写入 git/GCM，故 `git push` 无凭据；② 本代理 shell 无 `/dev/tty` 且无法弹窗，GCM 各模式（browser/device/--no-ui）均挂起，终端授权无法在沙箱完成；③ 用户在自己终端完成 GCM 授权后，沙箱与用户终端直连 `github.com:443` 均被 reset/超时（`api.github.com` 却 200）→ 网络层阻断 git 主机；④ 发现用户本地代理 `127.0.0.1:7897`，`curl -x` 验证 github.com=200 → `git -c http.proxy=… push` **成功**（main→main）。
+
+**远端校验**（连接器）：`list_commits`=7eee738+06b2d92 与本地一致；`config.local.json` **不存在**（无密钥）；`src-tauri/icons/icon.ico` 不存在（图标走 base64，符合设计）；`tools/` 目录含 `assets.b64.json`(684,287B)+`restore-icons.mjs`(756B)。克隆后 `npm install` 触发 postinstall 还原图标即可构建。
+
+**文档**：README/HANDOFF/PRD 同步 GitHub 地址与发布状态。
