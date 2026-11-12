@@ -46,3 +46,8 @@ tests/shots/
 tests/shots-*/
 prototypes/shots/
 prototypes/shots-*/
+tests/*.png
+
+# 二进制图标/源图以 base64 存于 tools/assets.b64.json，npm install 时自动还原
+src-tauri/icons/
+prototypes/icon-f-light-1024.png

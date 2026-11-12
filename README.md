@@ -59,6 +59,8 @@ cp config.local.example.json config.local.json   # Windows 用 copy
 npm run tauri dev
 ```
 
+> 图标等二进制资源以 base64 文本存于 `tools/assets.b64.json`；`npm install` 的 postinstall 会自动运行 `tools/restore-icons.mjs` 还原到 `src-tauri/icons/` 与原型源图，克隆后无需手动处理。
+
 **获取 API Key**
 
 1. 在 TokenHub 控制台开通服务，并在「模型广场」**启用你要用的模型**——未启用直接调用会返回 `402`。
