@@ -51,3 +51,24 @@ tests/*.png
 # 二进制图标/源图以 base64 存于 tools/assets.b64.json，npm install 时自动还原
 src-tauri/icons/
 prototypes/icon-f-light-1024.png
+
+# 内部文档/设计原型/验证产物：保留本地，不开源入库
+PRD.md
+PROJECT_HANDOFF.md
+TEST_REPORT.md
+preview.html
+preview-morandi.html
+prototypes/
+src/assets/
+.vscode/
+tests/*-results.json
+tests/word-model-probe.json
+tests/idle-watch.mjs
+tests/live.mjs
+tests/timeout-live.mjs
+tests/release-verify.mjs
+tests/release-smoke.mjs
+tests/settings-shot.mjs
+tests/verify-d.mjs
+tests/screen-capture.ps1
+tests/win-info.ps1
